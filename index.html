@@ -17,17 +17,66 @@
             <span class="center-point">
                 <span class="center-point-inner"></span>
             </span>
+
+            <span class="break-point1 break-point"></span>
+            <span class="break-point2 break-point"></span>
+            <span class="break-point3 break-point"></span>
+            <span class="break-point4 break-point"></span>
+
         </div>
-        <div class="alrams">
-            <div class="alrams-settings">
+
+        <div class="digital-time">
+            <p id="hours"></p>
+            <span>:</span>
+            <p id="minutes"></p>
+            <span>:</span>
+            <p id="seconds"></p>
+            <p id="am-pm"></p>
+        </div>
+
+        <div class="alarms">
+            <div class="alarms-settings">
                 <h2>Alarms</h2>
-                <i class="fa-solid fa-ellipsis setting"></i>
+                <div class="alarm-container">
+                    <i class="fa-solid fa-ellipsis setting"></i>
+                    <span class="delete-alarm">Delete All</span>
+                </div>
             </div>
-            <!-- <div class="alram"></div> -->
+            <div class="alarms-list">
+            <!-- <div class="alarm"></div> -->
+                
+                
+            </div>
+        </div>
+        <div class="add-btn">
+            <i class="fa-solid fa-plus add-alarm"></i>
         </div>
         <!-- <i class="ri-sun-fill"></i>  -->
         <i class="ri-moon-fill"></i>
+
+        <div class="popup">
+            <div class="popup-content">
+                <h2>Add Alarm</h2>
+                <div class="time-inputs">
+                    <input type="number" id="alarm-hours" placeholder="HH" min="0" max="23">
+                    <span>:</span>
+                    <input type="number" id="alarm-minutes" placeholder="MM" min="0" max="59">
+                    <span>:</span>
+                    <input type="text" id="alarm-am-pm" placeholder="AM/PM" list="am-pm-list">
+                    <datalist id="am-pm-list">
+                        <option value="AM"></option>
+                        <option value="PM"></option>
+                    </datalist>
+                </div>
+                <div class="popup-buttons">
+                    <button class="set-btn">Set Alarm</button>
+                    <button class="close-btn">Close</button>
+                </div>
+            </div>
+
+        </div>
     </div>
+    <div class="popup-overlay"></div>
     <script src="script.js"></script>
 </body>
 </html>

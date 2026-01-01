@@ -34,10 +34,10 @@ body{
 
 #clock{
     width: 500px;
-    height: 800px;
+    height: 95vh;
     margin: auto;
-    margin-top: 5%;
-    padding: 50px 20px;
+    margin-top: 1%;
+    padding: 50px 0px;
     border-radius: 16px;
     
     box-shadow: var(--shadow-color) 0 0 10px 0;
@@ -79,6 +79,38 @@ body{
     position: relative;
 }
 
+.digital-time{
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+/* animation of digital clock */
+#hours, #minutes, #seconds{
+    animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+}
+
+
+
+
+
 .col-hours{
     border: 2px var(--primary-color) solid;
     background-color: var(--primary-color);
@@ -88,7 +120,7 @@ body{
     top: 50%;
     right: 20%;
     
-    transform: rotate(0deg);
+    transform: rotate(270deg);
     transform-origin: left; /* rotates from left */
     
     transition: all .5s linear;
@@ -102,7 +134,7 @@ body{
     top: 50%;
     right: 10%;
     
-    transform: rotate(150deg);
+    transform: rotate(270deg);
     transform-origin: left; /* rotates from left */
     
     transition: all .5s linear;
@@ -117,7 +149,7 @@ body{
     top: 50%;
     right: 5%;
     
-    transform: rotate(120deg);
+    transform: rotate(270deg);
     transform-origin: left; /* rotates from left */
     
     box-shadow: var(--bg-btn-color) 0 0 5px 0;
@@ -125,6 +157,33 @@ body{
     transition: all .5s linear;
     z-index: 21;
 }
+
+.break-point{
+    width: 5px;
+    height: 10px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: var(--shadow-color) 0 0 5px 0;
+}
+.break-point1{
+    transform: translate(-50%, -50%) rotate(0deg) translateY(-110px);
+}
+.break-point2{
+    transform: translate(-50%, -50%) rotate(90deg) translateY(-110px);
+}
+.break-point3{
+    transform: translate(-50%, -50%) rotate(180deg) translateY(-110px);
+}
+.break-point4{
+    transform: translate(-50%, -50%) rotate(270deg) translateY(-110px);
+}
+
+
+
 .center-point{
     width: 15px;
     height: 15px;
@@ -147,9 +206,10 @@ body{
     transform: translate(-50%, -50%);
     box-shadow: var(--shadow-color) 0 0 5px 0;
     z-index: 21;
+   
 }
 
-.alrams{
+.alarms{
     width: 100%;
     margin-top: 50px;
     padding: 10px 20px;
@@ -157,21 +217,24 @@ body{
     flex-direction: column;
     gap: 15px;
     border-radius: 16px;
-    box-shadow: var(--shadow-color) 0 0 10px 0;
+    box-shadow: var(--shadow-color) 0 -5px 5px 0;
+        max-height: 350px;
+    
 }
-.alrams-settings{
+.alarms-settings{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    padding: 10px 10px;
 }
 
-.alrams-settings h2{
+.alarms-settings h2{
     font-size: 24px;
     font-weight: 600;
     color: var(--primary-color);
 }
-.alrams-settings i{
+.alarms-settings i{
     border: none;
     background-color: transparent;
     font-size: 24px;
@@ -179,6 +242,300 @@ body{
     cursor: pointer;
     transition: all .3s ease;
 }
-.alrams-settings i:hover{
+.alarms-settings i:hover{
+    color: var(--shadow-color);
+}
+
+.alarm-container{
+    position: relative;
+}
+.delete-alarm{
+    position: absolute;
+    width: max-content;
+    top: 15px;
+    right: 0;
+    background-color: var(--bg-btn-color);
+    color: var(--bg-color);
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: var(--shadow-color) 0 0 10px 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .3s ease;
+}
+.alarm-container:hover .delete-alarm{
+    opacity: 1;
+    pointer-events: all;
+}
+
+
+
+.alarms-list{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid var(--bg-btn-color); */
+    border-radius: 12px;
+    gap: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+}
+/* scroll bar */
+.alarms-list::-webkit-scrollbar{
+    width: 6px;
+    height: 6px;
+}
+.alarms-list::-webkit-scrollbar-thumb{
+    background-color: var(--primary-color);
+    border-radius: 32px;
+    box-shadow: var(--shadow-color) 0 0 10px 0;
+}
+
+.alarm{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 10px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-color) 0 10px 10px 0px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.alarm:hover{
+    box-shadow: var(--primary-color) 0 1px 15px 0px;
+}
+.alarm-time p{
+    font-size: 32px;
+}
+.alarm-date-toggle{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.alarm-date-toggle span{
+    font-weight: 300;
+}
+.area{
+    background-color: var(--shadow-color);
+    width: 40px;
+    height: 16px;
+    border: none;
+    border-radius: 32px;
+    position: relative;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+.area:hover{
+    background-color: var(--bg-btn-hover-color);
+}
+.circle{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: darkgray;
+    box-shadow: var(--shadow-color) 0 0 5px 0;
+    position: absolute;
+    top: -10%;
+    left: -1%;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+
+
+.area.active{
+    background-color: var(--bg-btn-color);
+    box-shadow: var(--bg-btn-color) 0 0 10px 0;
+}
+.circle.actived{
+    right: -1%;
+    left: unset;
+    background-color: white;
+    box-shadow: var(--bg-btn-color) 0 0 5px 0;
+}
+
+.add-btn{
+    width: 14%;
+    padding: 10px ;
+    border-radius: 50%;
+    border: none;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20px; */
+    /* background-color: var(--shadow-color); */
+    box-shadow: var(--shadow-color) 0 0 20px 0;
+}
+
+.add-alarm{
+    font-size: 32px;
+    color: white;
+    
+    cursor: pointer;
+    transition: all .3s ease;
+    background-color: var(--bg-btn-color);
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: var(--shadow-color) 0 0 10px 0;
+}
+.add-alarm:hover{
+    box-shadow: var(--shadow-color) 0 0 15px 0;
+    background-color: var(--bg-btn-hover-color);
+    scale: 1.05;
+}
+
+.popup-overlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s ease;
+    z-index: 100;
+}
+.popup-overlay.active{
+    visibility: visible;
+    opacity: 1;
+}
+.popup{
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+    
+    background-color: var(--bg-color);
+    padding: 0px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-color) 0 0 20px 0;
+}
+.popup.show{
+    width: 400px;
+    height: auto;
+    
+    padding: 30px 20px;
+    transition: all .3s ease;
+}
+
+
+.popup h2{
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+.popup .time-inputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.popup .time-inputs input{
+    width: 80px;
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+    border: 2px var(--primary-color) solid;
+    border-radius: 8px;
+    outline: none;
+    color: var(--primary-color);
+    background-color: var(--bg-color);
+}
+.popup .popup-buttons{
+    display: flex;
+    justify-content: space-around;
+}
+.popup .popup-buttons button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.set-btn{
+    background-color: var(--bg-btn-color);
+    color: var(--bg-color);
+    box-shadow: var(--shadow-color) 0 0 10px 0;
+}
+.set-btn:hover{
+    background-color: var(--bg-btn-hover-color);
+}
+.close-btn{
+    background-color: var(--shadow-color);
+    color: var(--primary-color);
+    box-shadow: var(--shadow-color) 0 0 10px 0;
+}
+.close-btn:hover{
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+.alarm-container{
+    display: flex;
+    justify-content: space-between;
+    gap: 150px;
+    align-items: center;
+
+
+}
+.alarm-btns{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alarm-date-toggle{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.alarm-date-toggle span{
+    font-weight: 300;
+    cursor: pointer;
+    transition: all .3s ease;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow-color) 0 0 10px 0;
+
+}
+.alarm-date-toggle span:hover{
+    background-color: var(--shadow-color);
+}
+.alarm-date-toggle span.active{
+    background-color: var(--bg-btn-color);
+    color: var(--bg-color);
+    box-shadow: var(--bg-btn-color) 0 0 10px 0;
+}
+.fa-trash{
+    color: var(--primary-color);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.fa-trash:hover{
+    color: var(--bg-btn-hover-color);
+}
+.fa-pen-to-square{
+    color: var(--primary-color);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.fa-pen-to-square:hover{
     color: var(--shadow-color);
 }
