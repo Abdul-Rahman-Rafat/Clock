@@ -33,7 +33,9 @@ setInterval(()=>{
     
     let hours_rotation = 30*hours + minutes/2;
     let minutes_rotation = 6*minutes + seconds/10;
-    let seconds_rotation = 6*seconds;
+    let milliseconds = date.getMilliseconds();
+    let seconds_rotation = 6 * (seconds + milliseconds / 1000);
+
 
     if (seconds === 0 ) {
     analog_seconds.style.transition = 'none';
@@ -111,8 +113,8 @@ add_btn.addEventListener('click', ()=>{
             hours -= 12;
         }
     }
-    document.getElementById('alarm-hours').value = hours<10 ? "0"+hours:hours;
-    document.getElementById('alarm-minutes').value = minutes<10 ? "0"+minutes:minutes;
+    document.getElementById('alarm-hours').value = hours;
+    document.getElementById('alarm-minutes').value = minutes;
     document.getElementById('alarm-am-pm').value = am_pm;
 });
 close_popup.addEventListener('click', ()=>{
@@ -123,7 +125,7 @@ set_alarm_btn.addEventListener('click', ()=>{
     let alarm_hours = document.getElementById('alarm-hours').value;
     let alarm_minutes = document.getElementById('alarm-minutes').value;
     let alarm_am_pm = document.getElementById('alarm-am-pm').value;
-    let alarm_time = `${alarm_hours<10 ? "0"+alarm_hours:alarm_hours}:${alarm_minutes} ${alarm_am_pm}`;
+    let alarm_time = `${alarm_hours<10 ? "0"+alarm_hours:alarm_hours}:${alarm_minutes<10 ? "0"+alarm_minutes:alarm_minutes} ${alarm_am_pm}`;
     if(alarm_hours=='' || alarm_minutes=='' || alarm_am_pm==''){
         return;
     }
@@ -174,7 +176,7 @@ set_alarm_btn.addEventListener('click', ()=>{
         popup.classList.add('show');
         let time = alarm_time.split(/[: ]/);
 
-        document.getElementById('alarm-hours').value = time[0];
+        document.getElementById('alarm-hours').value = time[0] ;
         document.getElementById('alarm-minutes').value = time[1];
         document.getElementById('alarm-am-pm').value = time[2];
         set_alarm_btn.addEventListener('click', ()=>{
