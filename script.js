@@ -94,6 +94,7 @@ setInterval(()=>{
 let del = document.querySelector('.delete-alarm');
 let alarm_container = document.querySelector('.alarm-container');
 let alarms_list = document.querySelector('.alarms-list');
+let overlay = document.querySelector('.popup-overlay');
 
 del.addEventListener('click', ()=>{
     alarms_list.innerHTML = '';
@@ -103,6 +104,7 @@ let popup = document.querySelector('.popup');
 let close_popup = document.querySelector('.close-btn');
 add_btn.addEventListener('click', ()=>{
     popup.classList.add('show');
+    overlay.classList.add('active');
     let date = new Date();
     let hours = date.getHours();
     let minutes = date.getMinutes();
@@ -119,6 +121,7 @@ add_btn.addEventListener('click', ()=>{
 });
 close_popup.addEventListener('click', ()=>{
     popup.classList.remove('show');
+    overlay.classList.remove('active');
 });
 let set_alarm_btn = document.querySelector('.set-btn');
 set_alarm_btn.addEventListener('click', ()=>{

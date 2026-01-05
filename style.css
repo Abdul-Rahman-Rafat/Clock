@@ -446,7 +446,7 @@ body{
 .popup .time-inputs input{
     width: 80px;
     padding: 10px;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
     border: 2px var(--primary-color) solid;
     border-radius: 8px;
